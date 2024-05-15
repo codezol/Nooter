@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head')  %>
+<body>
+    <%- include('partials/nav')  %>
+    <div class="details">
+        <h2><%= note.title %></h2>
+    <p><%= note.body %></p>
+    <button id="delete-btn"data-doc="<%= note._id %>">Delete</button>
+    </div>
+    <%- include('partials/footer')  %>
+    <script>
+        const button = document.querySelector('#delete-btn');
+
+        button.addEventListener('click', () => {
+            
+            const endpoint = `/notes/${button.dataset.doc}`
+            fetch(endpoint,{ method : 'DELETE'})
+            .then(response => response.json())
+            .then(data => window.location.href = data.redirect)
+            .catch(err => { console.log(err)})
+        })
+    </script>
+</body>
+</html>

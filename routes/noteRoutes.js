@@ -4,10 +4,11 @@ const noteRoutes = require('../controllers/noteConrollers');
 
 const router = express.Router();
 // all Notes
-router.get('/notes', noteRoutes.note_index);
 router.get('/', (req, res) => {
+    console.log('home...')
     res.redirect('/notes');
 })
+router.get('/notes', noteRoutes.note_index);
 // Note create get
 router.get('/notes/create', noteRoutes.note_create_get);
 // Note details

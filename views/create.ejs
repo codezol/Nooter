@@ -3,11 +3,23 @@
 <%- include('./partials/head')  %>
 <body>
     <%- include('./partials/nav.ejs') %>
-    <form action="/notes" method="POST">
-        <input type="text" id="title" name="title" required>
-        <input type="text" id="body" name="body" required>
-        <button type="submit">submit</button>
-    </form>
+    <main class="create">
+        <form action="/notes" method="POST">
+            <div>
+                <input type="text" id="title" name="title" placeholder="Write A Title For Your Note" required >
+                <textarea  id="body" name="body" placeholder="Write Your Note" required oninput="autoResize()"></textarea>
+            </div>
+            <button type="submit">submit</button>
+        </form>
+    </main>
     <%- include('./partials/footer.ejs') %>
+    
+    <script>
+        function autoResize() {
+            const textarea = document.querySelector('#body');
+            textarea.style.height = 'auto';
+            textarea.style.height = textarea.scrollHeight + 'px';
+        }
+    </script>
 </body>
 </html>
